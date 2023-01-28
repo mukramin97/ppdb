@@ -1,19 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 
 
 export default function MainLayout({ auth, header, children }) {
   const [toggleClass, setToggleClass] = useState(false);
   const [showClass, setShowClass] = useState(false);
+  const [activeTab, setActiveTab] = useState(window.location.pathname);
 
-
+  // Setting Menu Toggle
   const toggle = () => {
     setToggleClass(prevState => !prevState);
   }
 
+  // Setting Show Profile Menu Dropdown
   const show = () => {
     setShowClass(prevState => !prevState);
   }
+
+  // Setting Current Active Menu
+  useEffect(() => {
+    const handleClick = e => {
+      setActiveTab(e.target.getAttribute('href'));
+    };
+
+    const links = document.querySelectorAll('.nav-item');
+    links.forEach(link => link.addEventListener('click', handleClick));
+    return () => {
+      links.forEach(link => link.removeEventListener('click', handleClick));
+    };
+  }, []);
 
   return (
     <div>
@@ -32,28 +47,32 @@ export default function MainLayout({ auth, header, children }) {
           {/* Divider */}
           <hr className='sidebar-divider my-0' />
 
-          <li className='nav-item'>
-            <a className='nav-link' href="#">
+          <li className={`nav-item ${activeTab === '/' ? 'active' : ''}`}>
+            <Link className='nav-link' href="/">
               <i className='fas fa-fw fa-tachometer-alt'>
               </i>
               <span>Dashboard</span>
-            </a>
+            </Link>
+          </li>
+          
+          <hr className="sidebar-divider"/>
+
+          <div className="sidebar-heading">SETTING</div>
+
+          <li className={`nav-item ${activeTab === '/school' ? 'active' : ''}`}>
+            <Link className='nav-link' href='/school'>
+              <i className='fas fa-fw fa-tachometer-alt'>
+              </i>
+              <span>School</span>
+            </Link>
           </li>
 
-          {/* Divider */}
-          <hr className='sidebar-divider my-0' />
-
-          <hr className="sidebar-divider"></hr>
-
-          <div className="sidebar-heading">Interface</div>
-
-
           <li className='nav-item'>
-            <a className='nav-link' href="#">
+            <Link className='nav-link' href="#">
               <i className='fas fa-fw fa-cog'>
               </i>
               <span>Componensts</span>
-            </a>
+            </Link>
           </li>
 
           <hr className='sidebar-divider d-none d-md-block'></hr>
