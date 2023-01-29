@@ -14,7 +14,8 @@ class SchoolController extends Controller
 {
 	public function index()
 	{
-		return new SchoolCollection(School::paginate(2));
+    $schools = School::orderBy('created_at', 'desc')->paginate(5);
+		return new SchoolCollection($schools);
 	}
 
 	public function store(StoreSchoolRequest $request)

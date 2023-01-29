@@ -78,7 +78,7 @@ export default function School(props) {
                   <div className="card-tools float-right">
 
                     {/* CreateModal */}
-                    <CreateModal onDataUpdate={fetchData} />
+                    <CreateModal onDataUpdate={fetchData} setCurrentPage={setCurrentPage} />
 
                   </div>
                 </div>
@@ -107,7 +107,7 @@ export default function School(props) {
                     <tbody>
                       {schools.map((school, index) => (
                         <tr key={school.id}>
-                          <td style={ tableDataIndex }> {index + 1} </td>
+                          <td style={ tableDataIndex }> {index + 1 + (currentPage - 1) * 5} </td>
                           <td> {school.school_name} </td>
                           <td style={ tableDataAction }>
                             <div className="row">

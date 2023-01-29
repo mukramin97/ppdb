@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import { btn_xs } from '@/Style/TableStyles';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function CreateModal( onDataUpdate ) {
+export default function CreateModal( {onDataUpdate, setCurrentPage} ) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [school_name, setSchoolName] = useState('');
 
@@ -22,6 +22,7 @@ export default function CreateModal( onDataUpdate ) {
         .then((response) => {
           console.log("Success:", response.data);
           setSchoolName('');
+          setCurrentPage(1);
           onDataUpdate();
         })
         .catch((error) => {
