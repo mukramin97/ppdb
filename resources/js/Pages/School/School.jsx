@@ -1,27 +1,31 @@
 import MainLayout from '@/Layouts/MainLayout';
 import Pagination from '@/Layouts/Pagination';
+import CreateModal from './CreateModal';
+import EditModal from './EditModal';
 import { Head } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
+import { tableDataAction, tableHeaderAction, tableHeaderIndex, tableDataIndex } from '@/Style/TableStyles';
+import { btn_xs } from '@/Style/TableStyles';
 
 export default function School(props) {
   const [schools, setSchools] = useState([]);
   const [meta, setMeta] = useState([]);
 
-  // Define currentPage wiith default 1 to get current paginate index
+  // Define currentPage with default 1 to get current paginate index
   const [currentPage, setCurrentPage] = useState(1);
 
+  const fetchData = async () => {
+    // Set listening to API based on currentPage
+    const response = await axios.get(`/api/v1/schools?page=${currentPage}`);
+
+    // Set schools data to display on table 
+    setSchools(response.data.data);
+
+    // Set meta data to use it on pagination
+    setMeta(response.data.meta);
+  };
+
   useEffect(() => {
-    async function fetchData() {
-      // Set listening to API based on currentPage
-      const response = await axios.get(`/api/v1/schools?page=${currentPage}`);
-
-      // Set schools data to display on table 
-      setSchools(response.data.data);
-
-      // Set meta data to use it on pagination
-      setMeta(response.data.meta);
-    }
-
     fetchData();
   }, [currentPage]);
 
@@ -29,6 +33,19 @@ export default function School(props) {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   }
+
+  const handleDelete = (schoolId) => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      axios.delete(`http://ppdb.test/api/v1/schools/${schoolId}`)
+        .then((response) => {
+          console.log("Success:", response.data);
+          fetchData();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
 
   return (
     <MainLayout
@@ -53,7 +70,19 @@ export default function School(props) {
 
             {/* Card Header */}
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <div className="row">
+                <div className="col-6">
+                  <h6 className="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                </div>
+                <div className="col-6">
+                  <div className="card-tools float-right">
+
+                    {/* CreateModal */}
+                    <CreateModal onDataUpdate={fetchData} />
+
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Card Content */}
@@ -63,23 +92,40 @@ export default function School(props) {
                   <table className='table table-bordered dataTable' id='dataTable' cellSpacing='0' role='grid' width='100%' style={{ width: "100%" }}>
                     <thead>
                       <tr>
-                        <th>No</th>
+                        <th style={ tableHeaderIndex } >No</th>
                         <th>School Name</th>
-                        <th>Action</th>
+                        <th style={ tableHeaderAction } >Action</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>No</th>
+                        <th style={ tableHeaderIndex }>No</th>
                         <th>School Name</th>
-                        <th>Action</th>
+                        <th style={ tableHeaderAction }>Action</th>
                       </tr>
                     </tfoot>
                     <tbody>
                       {schools.map((school, index) => (
                         <tr key={school.id}>
-                          <td> {index + 1}</td>
-                          <td>{school.school_name}</td>
+                          <td style={ tableDataIndex }> {index + 1} </td>
+                          <td> {school.school_name} </td>
+                          <td style={ tableDataAction }>
+                            <div className="row">
+                              <div className="col-6">
+                                <EditModal school={school} onDataUpdate={fetchData} />
+                              </div>
+                              <div className="col-6">
+                                <div>
+                                  <button onClick={() => handleDelete(school.id)} className="btn btn-sm btn-danger btn-icon-split" style={ btn_xs }>
+                                    <span className="icon text-white-50">
+                                      <i className="fas fa-trash"></i>
+                                    </span>
+                                    <span className="text">Delete</span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -90,14 +136,6 @@ export default function School(props) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900">School!</div>
           </div>
         </div>
       </div>

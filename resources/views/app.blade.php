@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Aplikasi PPDB untuk Pondok Pesantren IMMIM Putra">
 
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
     <link href="{{ asset('SBAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

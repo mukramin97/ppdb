@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 
-
 export default function MainLayout({ auth, header, children }) {
   const [toggleClass, setToggleClass] = useState(false);
   const [showClass, setShowClass] = useState(false);
