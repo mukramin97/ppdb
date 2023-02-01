@@ -8,7 +8,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function EditModal({ school, onDataUpdate }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [school_name, setSchoolName] = useState(school.school_name);
+  const [formData, setFormData] = useState({ school_name: school.school_name, address: school.address });
+
+  const handleInputChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
+
 
   const handleClose = () => setIsModalOpen(false);
   const handleShow = () => setIsModalOpen(true);
@@ -16,9 +24,7 @@ export default function EditModal({ school, onDataUpdate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.put(`http://ppdb.test/api/v1/schools/${school.id}`, {
-      school_name: school_name
-    })
+    axios.put(`http://ppdb.test/api/v1/schools/${school.id}`, formData)
       .then((response) => {
         console.log("Success:", response.data);
         onDataUpdate();
@@ -32,7 +38,7 @@ export default function EditModal({ school, onDataUpdate }) {
 
   return (
     <div>
-      <button className="btn btn-sm btn-primary btn-icon-split" style={ btn_xs } onClick={handleShow}>
+      <button className="btn btn-sm btn-primary btn-icon-split" style={btn_xs} onClick={handleShow}>
         <span className="icon text-white-50">
           <i className="fas fa-edit"></i>
         </span>
@@ -49,10 +55,23 @@ export default function EditModal({ school, onDataUpdate }) {
               <Form.Label>School Name</Form.Label>
               <Form.Control
                 type='text'
+                name="school_name"
+                id="school_name"
                 placeholder="Enter School Name"
                 autoFocus
-                value={school_name}
-                onChange={(e) => setSchoolName(e.target.value)}
+                value={formData.school_name}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                type='text'
+                name="address"
+                id="address"
+                placeholder="Enter School Address"
+                value={formData.address}
+                onChange={handleInputChange}
               />
             </Form.Group>
           </Form>

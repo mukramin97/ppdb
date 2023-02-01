@@ -20,5 +20,5 @@ export const tableDataAction = {
 
 export const btn_xs = {
   fontSize: "12px",
-  padding: "3px 7px"
+  padding: "2px 2px"
 };

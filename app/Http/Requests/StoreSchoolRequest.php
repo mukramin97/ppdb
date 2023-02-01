@@ -25,7 +25,8 @@ class StoreSchoolRequest extends FormRequest
     public function rules()
     {
         return [
-            'school_name' => ['required', 'min:3', 'max:30', Rule::unique('schools')->ignore($this->school)]
+            'school_name' => ['required', 'min:3', 'max:30', Rule::unique('schools')->ignore($this->school)],
+            'address' => ['required', 'min:3', 'max:30']
         ];
     }
 }

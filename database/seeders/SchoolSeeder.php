@@ -19,14 +19,17 @@ class SchoolSeeder extends Seeder
         
         DB::table('schools')->insert([
             'school_name' => 'SMP Pesantren IMMIM',
+            'address' => 'Tamalanrea'
         ]);
 
         DB::table('schools')->insert([
             'school_name' => 'SMA Pesantren IMMIM',
+            'address' => 'Moncongloe'
         ]);
 
         DB::table('schools')->insert([
             'school_name' => 'MA Pesantren IMMIM',
+            'address' => 'Moncongloe'
         ]);
     }
 }

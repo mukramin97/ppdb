@@ -89,11 +89,12 @@ export default function School(props) {
             <div className="card-body">
               <div className="table-responsive " style={{ overflowX: "auto" }}>
                 <div id='dataTable_wrapper' className="dataTables_wrapper dt-bootstrap4">
-                  <table className='table table-bordered dataTable' id='dataTable' cellSpacing='0' role='grid' width='100%' style={{ width: "100%" }}>
+                  <table className='table table-sm table-bordered dataTable' id='dataTable' cellSpacing='0' role='grid' width='100%' style={{ width: "100%" }}>
                     <thead>
                       <tr>
                         <th style={ tableHeaderIndex } >No</th>
                         <th>School Name</th>
+                        <th>Address</th>
                         <th style={ tableHeaderAction } >Action</th>
                       </tr>
                     </thead>
@@ -101,6 +102,7 @@ export default function School(props) {
                       <tr>
                         <th style={ tableHeaderIndex }>No</th>
                         <th>School Name</th>
+                        <th>Address</th>
                         <th style={ tableHeaderAction }>Action</th>
                       </tr>
                     </tfoot>
@@ -109,6 +111,7 @@ export default function School(props) {
                         <tr key={school.id}>
                           <td style={ tableDataIndex }> {index + 1 + (currentPage - 1) * 5} </td>
                           <td> {school.school_name} </td>
+                          <td> {school.address} </td>
                           <td style={ tableDataAction }>
                             <div className="row">
                               <div className="col-6">
