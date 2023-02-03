@@ -49,7 +49,7 @@ export default function CreateModal({ onDataUpdate, setCurrentPage }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>School Name</Form.Label>
               <Form.Control
                 type='text'
@@ -61,7 +61,7 @@ export default function CreateModal({ onDataUpdate, setCurrentPage }) {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type='text'

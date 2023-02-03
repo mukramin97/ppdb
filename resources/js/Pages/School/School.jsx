@@ -113,7 +113,7 @@ export default function School(props) {
                           <td> {school.school_name} </td>
                           <td> {school.address} </td>
                           <td style={ tableDataAction }>
-                            <div className="row">
+                            <div className="row" style={{ margin: "0" }}>
                               <div className="col-6">
                                 <EditModal school={school} onDataUpdate={fetchData} />
                               </div>
