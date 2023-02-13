@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -17,11 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $admin = User::create([
             'name' => 'Admin Yohoho',
             'email' => 'admin@admin.com',
             'password' => bcrypt('Admin.123'),
             'remember_token' => Str::random(60),
         ]);
+
+        $admin->assignRole('admin');
     }
 }

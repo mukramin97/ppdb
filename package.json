@@ -21,7 +21,9 @@
     },
     "dependencies": {
         "bootstrap": "^5.2.3",
+        "jspdf": "^2.5.1",
         "react-bootstrap": "^2.7.0",
-        "reactstrap": "^9.1.5"
+        "reactstrap": "^9.1.5",
+        "sweetalert2": "^11.7.1"
     }
 }

@@ -6,6 +6,9 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { Button } from 'react-bootstrap';
+import { text_xs } from '@/Style/Style';
+
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -87,8 +90,20 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className="ml-4" processing={processing}>
-                        Log in
+                    <Button
+                        style={{
+                            fontSize: "12px",
+                            padding: "2px 10px",
+                            margin: "0px",
+                            height: "34px"
+                        }}
+                        className="ml-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                        href="/registersiswa">
+                        Daftar
+                    </Button>
+
+                    <PrimaryButton className="ml-2" processing={processing}>
+                        Login
                     </PrimaryButton>
                 </div>
             </form>

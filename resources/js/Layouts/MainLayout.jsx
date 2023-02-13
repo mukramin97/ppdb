@@ -46,31 +46,47 @@ export default function MainLayout({ auth, header, children }) {
           {/* Divider */}
           <hr className='sidebar-divider my-0' />
 
-          <li className={`nav-item ${activeTab === '/' ? 'active' : ''}`}>
-            <Link className='nav-link' href="/">
+          <li className={`nav-item ${activeTab === '/dashboard' ? 'active' : ''}`}>
+            <Link className='nav-link' href="/dashboard">
               <i className='fas fa-fw fa-tachometer-alt'>
               </i>
               <span>Dashboard</span>
             </Link>
           </li>
-          
+
+          <li className={`nav-item ${activeTab === '/siswa' ? 'active' : ''}`}>
+            <Link className='nav-link' href="/siswa">
+              <i className='fas fa-fw fa-user'>
+              </i>
+              <span>Siswa</span>
+            </Link>
+          </li>
+
           <hr className="sidebar-divider"/>
 
           <div className="sidebar-heading">SETTING</div>
 
-          <li className={`nav-item ${activeTab === '/school' ? 'active' : ''}`}>
+          {/* <li className={`nav-item ${activeTab === '/school' ? 'active' : ''}`}>
             <Link className='nav-link' href='/school'>
               <i className='fas fa-fw fa-tachometer-alt'>
               </i>
               <span>School</span>
             </Link>
+          </li> */}
+
+          <li className={`nav-item ${activeTab === '/tahunajaran' ? 'active' : ''}`}>
+            <Link className='nav-link' href='/tahunajaran'>
+              <i className='fas fa-fw fa-calendar-week'>
+              </i>
+              <span>Tahun Ajaran</span>
+            </Link>
           </li>
 
-          <li className='nav-item'>
-            <Link className='nav-link' href="#">
-              <i className='fas fa-fw fa-cog'>
+          <li className={`nav-item ${activeTab === '/jenjang' ? 'active' : ''}`}>
+            <Link className='nav-link' href='/jenjang'>
+              <i className='fas fa-fw fa-layer-group'>
               </i>
-              <span>Componensts</span>
+              <span>Jenjang</span>
             </Link>
           </li>
 

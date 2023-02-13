@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { btn_xs } from '@/Style/TableStyles';
+import { btn_xs } from '@/Style/Style';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function CreateModal({ onDataUpdate, setCurrentPage }) {
@@ -60,6 +60,7 @@ export default function CreateModal({ onDataUpdate, setCurrentPage }) {
                 value={formData.school_name}
                 onChange={handleInputChange}
               />
+
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Address</Form.Label>

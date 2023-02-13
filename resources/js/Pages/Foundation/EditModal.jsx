@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import InputError from '@/Components/InputError';
 
-import { btn_xs } from '@/Style/TableStyles';
+import { btn_xs } from '@/Style/Style';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function EditModal({ school, onDataUpdate }) {

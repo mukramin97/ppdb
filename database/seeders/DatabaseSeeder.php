@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Siswa;
+use AzisHapidin\IndoRegion\IndoRegion;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,8 +25,14 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            RoleSeeder::class,
             UserSeeder::class,
-            SchoolSeeder::class,            
+            SchoolSeeder::class,
+            JenjangSeeder::class,
+            TahunAjaranSeeder::class,
+            SiswaSeeder::class,
+            IndoRegionProvinceSeeder::class,
+            IndoRegionRegencySeeder::class,
         ]);
     }
 }

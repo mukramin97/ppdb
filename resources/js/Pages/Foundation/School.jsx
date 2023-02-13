@@ -4,8 +4,8 @@ import CreateModal from './CreateModal';
 import EditModal from './EditModal';
 import { Head } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
-import { tableDataAction, tableHeaderAction, tableHeaderIndex, tableDataIndex } from '@/Style/TableStyles';
-import { btn_xs } from '@/Style/TableStyles';
+import { tableDataAction, tableHeaderAction, tableHeaderIndex, tableDataIndex } from '@/Style/Style';
+import { btn_xs } from '@/Style/Style';
 
 export default function School(props) {
   const [schools, setSchools] = useState([]);
@@ -18,7 +18,7 @@ export default function School(props) {
     // Set listening to API based on currentPage
     const response = await axios.get(`/api/v1/schools?page=${currentPage}`);
 
-    // Set schools data to display on table 
+    // Set schools data to display on table
     setSchools(response.data.data);
 
     // Set meta data to use it on pagination
