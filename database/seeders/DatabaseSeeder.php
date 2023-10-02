@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             JenjangSeeder::class,
             TahunAjaranSeeder::class,
             SiswaSeeder::class,
+            PengumumanSeeder::class,
             IndoRegionProvinceSeeder::class,
             IndoRegionRegencySeeder::class,
         ]);
