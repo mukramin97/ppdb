@@ -111,13 +111,13 @@ export default function MainLayout({ auth, header, children }) {
                   <div className={`dropdown-menu dropdown-menu-right shadow animated--grow-in ${showClass ? 'show' : ''}`} aria-labelledby="userDropdown">
 
                     {/* Edit Profile */}
-                    <Link className="dropdown-item" href={route('profile.edit')}>
+                    {/* <Link className="dropdown-item" href={route('profile.edit')}>
                       <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                       Profile
-                    </Link>
+                    </Link> */}
 
                     {/* Divider */}
-                    <div className="dropdown-divider"></div>
+                    {/* <div className="dropdown-divider"></div> */}
 
                     {/* Logout */}
                     <Link className="dropdown-item" href={route('logout')} method="post" as="button" data-toggle="modal" data-target="#logoutModal">

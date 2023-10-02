@@ -23,7 +23,18 @@ class SiswaController extends Controller
 {
 	public function index()
 	{
-		$siswas = Siswa::orderBy('created_at', 'desc')->paginate(10);
+
+		$tahun_ajaran_aktif = TahunAjaran::where('is_active', 1)->first();
+
+		if ($tahun_ajaran_aktif) {
+			$siswas = Siswa::where('tahun_ajaran_id', $tahun_ajaran_aktif->id)
+				->orderBy('created_at', 'desc')
+				->paginate(10);
+		} else {
+			// Handle the case where no active academic year was found.
+			$siswas = null; // or any other appropriate handling
+		}
+
 		return new SiswaCollection($siswas);
 	}
 
@@ -98,6 +109,7 @@ class SiswaController extends Controller
 
 	public function show($id)
 	{
+
 		$user = User::find($id);
 		if (!$user) {
 			return response()->json(['message' => 'User not found'], 404);
