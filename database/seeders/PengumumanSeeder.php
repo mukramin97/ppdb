@@ -20,10 +20,12 @@ class PengumumanSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
 
             DB::table('pengumuman')->insert([
-                'content' => $faker->text(200)
+                'content' => $faker->text(200),
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
 
         }

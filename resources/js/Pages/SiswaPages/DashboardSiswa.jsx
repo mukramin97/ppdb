@@ -5,11 +5,14 @@ import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { form_dashboard, label_dashboard } from '@/Style/Style';
+import { tableDataAction, tableHeaderAction, tableHeaderIndex, tableDataIndex, btn_xs } from '@/Style/Style';
 
 
 export default function DashboardSiswa(props) {
   const [imageUrl, setImageUrl] = useState([]);
   const [siswa, setSiswa] = useState([]);
+
+  const [pengumumans, setPengumumans] = useState([]);
 
   useEffect(() => {
     axios.get(`http://ppdb.test/api/v1/preview_pasfoto/${props.auth.user.id}`, { responseType: 'blob' })
@@ -21,6 +24,12 @@ export default function DashboardSiswa(props) {
       .then(response => {
         setSiswa(response.data.data);
       });
+
+    axios.get(`http://ppdb.test/api/v1/pengumuman`)
+      .then(response => {
+        setPengumumans(response.data.data);
+      });
+
 
   }, []);
 
@@ -126,9 +135,23 @@ export default function DashboardSiswa(props) {
                   </h6>
                 </div>
                 <div className="card-body" >
-                  <div className='table table-responsive'>
-                    <table>
+                  <div className='table table-responsive table-bordered'>
+                    <table style={{ width: "100%" }}>
+                      <thead>
+                        <tr>
+                          <th style={tableHeaderIndex} >No</th>
+                          <th>Pengumuman</th>
 
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {pengumumans.map((pengumuman, index) => (
+                          <tr key={pengumuman.id}>
+                            <td style={tableDataIndex}> {index + 1} </td>
+                            <td> {pengumuman.content} </td>
+                          </tr>
+                        ))}
+                      </tbody>
                     </table>
                   </div>
                 </div>
@@ -136,8 +159,6 @@ export default function DashboardSiswa(props) {
             </div>
 
           </div>
-
-
 
         </div>
       </div>
