@@ -90,6 +90,14 @@ export default function MainLayout({ auth, header, children }) {
             </Link>
           </li>
 
+          <li className={`nav-item ${activeTab === '/pengumuman' ? 'active' : ''}`}>
+            <Link className='nav-link' href='/pengumuman'>
+            <i className='fas fa-fw fa-info-circle'>
+              </i>
+              <span>Pengumuman</span>
+            </Link>
+          </li>
+
           <hr className='sidebar-divider d-none d-md-block'></hr>
           <div className='text-center d-none d-md-inline'>
             <button className='rounded-circle border-0' id='sidebarToggle' onClick={toggle}></button>
