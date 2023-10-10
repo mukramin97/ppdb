@@ -35,6 +35,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::apiResource('pengumuman', PengumumanController::class);
 
     Route::get('jenjang_all', [JenjangController::class, 'jenjang_all'])->name('jenjang_all');
+    Route::get('pengumuman_all', [PengumumanController::class, 'index_all'])->name('index_all');
     Route::get('siswa/berkassiswa/{id}', [SiswaController::class, 'berkas_siswa'])->name('berkas_siswa');
     Route::get('siswa/dashboard/{id}', [SiswaController::class, 'dashboard'])->name('dashboard_siswa');
 

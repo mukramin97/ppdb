@@ -25,7 +25,7 @@ export default function DashboardSiswa(props) {
         setSiswa(response.data.data);
       });
 
-    axios.get(`http://ppdb.test/api/v1/pengumuman`)
+    axios.get(`http://ppdb.test/api/v1/pengumuman_all`)
       .then(response => {
         setPengumumans(response.data.data);
       });

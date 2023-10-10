@@ -20,6 +20,14 @@ class PengumumanController extends Controller
 		return new PengumumanCollection($pengumuman);
 	}
 
+	public function index_all()
+	{
+
+		$pengumuman = Pengumuman::orderBy('created_at', 'desc')->get();
+
+		return new PengumumanCollection($pengumuman);
+	}
+
     public function store(StorePengumumanRequest $request)
 	{
 		Pengumuman::create($request->validated());
