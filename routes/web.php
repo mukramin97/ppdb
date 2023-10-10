@@ -36,6 +36,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/tahunajaran', function () {
         return Inertia::render('TahunAjaran/TahunAjaran');
     });
+
+    Route::get('/pengumuman', function () {
+        return Inertia::render('Pengumuman/Pengumuman');
+    });
+    
 });
 
 Route::group(['middleware' => ['role:siswa']], function () {

@@ -15,7 +15,7 @@ class PengumumanController extends Controller
     public function index()
 	{
 
-		$pengumuman = Pengumuman::orderBy('created_at', 'desc')->get();
+		$pengumuman = Pengumuman::orderBy('created_at', 'desc')->paginate(5);
 
 		return new PengumumanCollection($pengumuman);
 	}
@@ -31,42 +31,24 @@ class PengumumanController extends Controller
 		], 200);
 	}
 
-    public function show($id)
+    public function update(StorePengumumanRequest $request, Pengumuman $pengumuman)
     {
-        //
+        $pengumuman->update($request->validated());
+
+		return response()->json([
+			'status' => 'success',
+			'title' => 'Berhasil!',
+			'message' => 'Perubahan data Pengumuman berhasil disimpan.'
+		], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function destroy(Pengumuman $pengumuman)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $pengumuman->delete();
+		return response()->json([
+			'status' => 'info',
+			'title' => 'Berhasil!',
+			'message' => 'Data Pengumuman berhasil dihapus.'
+		], 200);
     }
 }
