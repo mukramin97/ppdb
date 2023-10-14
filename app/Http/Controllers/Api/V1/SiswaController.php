@@ -21,13 +21,17 @@ use Illuminate\Support\Str;
 
 class SiswaController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-
 		$tahun_ajaran_aktif = TahunAjaran::where('is_active', 1)->first();
+
+		$jenjang = $request->input('jenjang');
 
 		if ($tahun_ajaran_aktif) {
 			$siswas = Siswa::where('tahun_ajaran_id', $tahun_ajaran_aktif->id)
+				->when($jenjang, function ($query) use ($jenjang) {
+					return $query->where('jenjang_id', $jenjang);
+				})
 				->orderBy('created_at', 'desc')
 				->paginate(10);
 		} else {

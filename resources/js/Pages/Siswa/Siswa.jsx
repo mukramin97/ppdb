@@ -2,6 +2,8 @@ import MainLayout from '@/Layouts/MainLayout';
 import Pagination from '@/Layouts/Pagination';
 import EditModal from './EditModal';
 import PDFUpload from './PDFUpload';
+import JenjangFilter from './JenjangFilter';
+
 
 import { Head } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
@@ -11,11 +13,13 @@ import Swal from 'sweetalert2';
 export default function Siswa(props) {
   const [siswas, setSiswas] = useState([]);
   const [meta, setMeta] = useState([]);
+  const [selectedJenjang, setSelectedJenjang] = useState('0');
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const fetchData = async () => {
-    const response = await axios.get(`/api/v1/siswa?page=${currentPage}`);
+
+    const response = await axios.get(`/api/v1/siswa?page=${currentPage}&jenjang=${selectedJenjang}`);
 
     setSiswas(response.data.data);
 
@@ -23,9 +27,15 @@ export default function Siswa(props) {
     setMeta(response.data.meta);
   };
 
+  const handleJenjangSelection = (event) => {
+    const selectedValue = event.target.value;
+    const newValue = selectedValue === "" ? 0 : selectedValue;
+    setSelectedJenjang(newValue);
+  };
+
   useEffect(() => {
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, selectedJenjang]);
 
   // Listening if pagination is changing to another page
   const handlePageChange = (newPage) => {
@@ -103,6 +113,13 @@ export default function Siswa(props) {
                 </div>
                 <div className="col-6">
                   <div className="card-tools float-right">
+                    <div>
+
+                      <div>
+                        <JenjangFilter onSelectJenjang={handleJenjangSelection} />
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
