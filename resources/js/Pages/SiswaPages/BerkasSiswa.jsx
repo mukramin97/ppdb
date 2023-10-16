@@ -187,7 +187,7 @@ export default function BerkasSiswa(props) {
                   </Col>
                   <Col xs={10} md={3}>
                     <Form.Group className="text-center align-items-center">
-                      <Form.Label>File Foto Saat Ini</Form.Label>                      {
+                      <Form.Label>&nbsp;</Form.Label>{
                         berkasSiswa.pasfoto ? (
                           <Form.Text style={{ margin: '0' }}>
                             <PDFDownload siswa_id={berkasSiswa.id} document="pasfoto" onDataUpdate={fetchData} />
@@ -219,7 +219,7 @@ export default function BerkasSiswa(props) {
                   </Col>
                   <Col xs={10} md={3}>
                     <Form.Group className="text-center align-items-center">
-                      <Form.Label>File Kartu Keluarga Saat Ini</Form.Label>                      {
+                      <Form.Label>&nbsp;</Form.Label>{
                         berkasSiswa.dokumen_kk ? (
                           <Form.Text style={{ margin: '0' }}>
                             <PDFDownload siswa_id={berkasSiswa.id} document="dokumen_kk" onDataUpdate={fetchData} />
@@ -251,7 +251,7 @@ export default function BerkasSiswa(props) {
                   </Col>
                   <Col xs={10} md={3}>
                     <Form.Group className="text-center align-items-center mb-2">
-                      <Form.Label>File Akta Lahir Saat Ini</Form.Label>                      {
+                      <Form.Label>&nbsp;</Form.Label>{
                         berkasSiswa.dokumen_akta ? (
                           <Form.Text style={{ margin: '0' }}>
                             <PDFDownload siswa_id={berkasSiswa.id} document="dokumen_akta" />
@@ -282,7 +282,7 @@ export default function BerkasSiswa(props) {
                   </Col>
                   <Col xs={10} md={3}>
                     <Form.Group className="text-center align-items-center mb-2" >
-                      <Form.Label>File Ijazah Saat Ini</Form.Label>                      {
+                      <Form.Label>&nbsp;</Form.Label>{
                         berkasSiswa.dokumen_ijazah ? (
                           <Form.Text style={{ margin: '0' }}>
                             <PDFDownload siswa_id={berkasSiswa.id} document="dokumen_ijazah" />
@@ -313,7 +313,7 @@ export default function BerkasSiswa(props) {
                   </Col>
                   <Col xs={10} md={3}>
                     <Form.Group className="text-center align-items-center mb-2">
-                      <Form.Label>File Sertifikat Saat Ini</Form.Label>                      {
+                      <Form.Label>&nbsp;</Form.Label>{
                         berkasSiswa.dokumen_sertifikat ? (
                           <Form.Text style={{ margin: '0' }}>
                             <PDFDownload siswa_id={berkasSiswa.id} document="dokumen_sertifikat" />

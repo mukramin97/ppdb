@@ -3,41 +3,37 @@ import { Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 const PDFDownload = ({ siswa_id, document, onDataUpdate }) => {
-  const [loading, setLoading] = useState(false);
-  const [pdfBlob, setPdfBlob] = useState(null);
 
   const handleDownload = () => {
-    setLoading(true);
     axios.get(`http://ppdb.test/api/v1/file_download/${siswa_id}/${document}`, { responseType: 'blob' })
       .then(response => {
         if (response.status === 404) {
           setError(response.data.error);
         } else {
-          setPdfBlob(response.data);
-          const fileUrl = URL.createObjectURL(response.data);
-          window.open(fileUrl, '_blank');
+          // Open the file in a new window
+          const newWindow = window.open('', '_blank', 'height=600,width=800');
+          if (newWindow) {
+            const fileUrl = URL.createObjectURL(response.data);
+            newWindow.location.href = fileUrl;
+            newWindow.focus();
+          } else {
+            console.error('Popup blocker may have prevented opening a new window.');
+          }
         }
-        setLoading(false);
       })
       .catch(error => {
         console.error(error);
-        setLoading(false);
       });
   }
 
 
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!pdfBlob) {
-    return (
-      <Button onClick={handleDownload}>
-        Unduh Berkas
-      </Button>
-    );
-  }
+  return (
+    <Button onClick={handleDownload}>
+      Lihat Berkas
+    </Button>
+  );
+  
 };
 
 export default PDFDownload;
