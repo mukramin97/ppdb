@@ -42,3 +42,12 @@ export const form_dashboard = {
   textAlign: "left",
   border: '0'
 }
+
+export const cardStyles = {
+  highlightedNumber: {
+    fontSize: '2.8em', // Make the number bigger
+    fontWeight: 'bold', // Make it bold
+    color: '#486dda', // Change the color
+    display: 'inline-block', // Centered vertically by default
+  },
+};

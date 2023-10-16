@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\SiswaController;
 use App\Http\Controllers\Api\V1\IndoRegionController;
 use App\Http\Controllers\Api\V1\KeluargaController;
 use App\Http\Controllers\Api\V1\PengumumanController;
+use App\Http\Controllers\Api\V1\DashboardController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'v1'], function(){
     Route::apiResource('siswa', SiswaController::class);
     Route::apiResource('keluarga', KeluargaController::class);
     Route::apiResource('pengumuman', PengumumanController::class);
+    Route::apiResource('dashboard', DashboardController::class);
 
     Route::get('jenjang_all', [JenjangController::class, 'jenjang_all'])->name('jenjang_all');
     Route::get('pengumuman_all', [PengumumanController::class, 'index_all'])->name('index_all');
