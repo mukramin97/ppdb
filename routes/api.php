@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function(){
     Route::apiResource('schools', SchoolController::class);
+    
     Route::apiResource('jenjang', JenjangController::class);
     Route::apiResource('tahunajaran', TahunAjaranController::class);
     Route::apiResource('siswa', SiswaController::class);
